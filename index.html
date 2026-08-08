@@ -240,6 +240,39 @@ nav {
     font-family: inherit;
 }
 
+/* =========================
+   Legend
+========================= */
+
+.legend {
+    border-color: #ffb300;
+    background: linear-gradient(
+        145deg,
+        rgba(255,179,0,.14),
+        rgba(255,255,255,.025)
+    );
+}
+
+.legend::before {
+    background: #ff9800;
+    opacity: .28;
+}
+
+.legend h3 {
+    color: #ffc107;
+}
+
+.legend .price {
+    color: #ffc107;
+}
+
+.legend:hover {
+    border-color: #ffd54f;
+    box-shadow:
+        0 20px 60px rgba(255,179,0,.25),
+        0 0 25px rgba(255,179,0,.15);
+}
+
 footer {
     text-align: center;
     padding: 25px;
@@ -356,6 +389,26 @@ footer {
             </button>
         </div>
 
+
+        <!-- Legend -->
+        <div class="card legend">
+            <h3>🔥 Legend</h3>
+
+            <div class="price">
+                ۴۳۲,۰۰۰ تومان
+            </div>
+
+            <ul>
+                <li>✔ رنک Legend</li>
+                <li>✔ تمامی امکانات ویژه</li>
+                <li>✔ تگ اختصاصی Legend</li>
+            </ul>
+
+            <button class="buy" onclick="buy('PVP Legend')">
+                خرید رنک
+            </button>
+        </div>
+
     </div>
 
     <button class="back" onclick="goHome()">← برگشت به صفحه اصلی</button>
@@ -424,6 +477,26 @@ footer {
             </ul>
 
             <button class="buy" onclick="buy('RP Diamond')">
+                خرید رنک
+            </button>
+        </div>
+
+
+        <!-- Legend -->
+        <div class="card legend">
+            <h3>🔥 Legend</h3>
+
+            <div class="price">
+                ۴۳۲,۰۰۰ تومان
+            </div>
+
+            <ul>
+                <li>✔ رنک Legend</li>
+                <li>✔ تمامی امکانات ویژه RP</li>
+                <li>✔ تگ اختصاصی Legend</li>
+            </ul>
+
+            <button class="buy" onclick="buy('RP Legend')">
                 خرید رنک
             </button>
         </div>
