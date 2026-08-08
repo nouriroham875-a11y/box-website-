@@ -1,14 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BOX Network</title>
+<title>BOX Network | فروشگاه</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,146 +13,120 @@
 }
 
 body {
-    font-family: Vazirmatn, sans-serif;
-    background: #050511;
+    font-family: Tahoma, Arial, sans-serif;
+    background:
+        radial-gradient(circle at top, #202050 0%, #090914 45%, #050508 100%);
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* نور دنبال‌کننده موس */
-.cursor-light {
+/* پس زمینه */
+body::before {
+    content: "";
     position: fixed;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(130,70,255,.25), transparent 65%);
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(0,180,255,.12), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(170,0,255,.12), transparent 25%);
     pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 0;
 }
 
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(5,5,17,.7);
-    backdrop-filter: blur(15px);
-    z-index: 10;
-    border-bottom: 1px solid rgba(255,255,255,.08);
+/* هدر */
+header {
+    text-align: center;
+    padding: 70px 20px 40px;
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: 900;
-    background: linear-gradient(90deg,#8b5cf6,#00e5ff);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.nav-buttons button {
-    background: transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,.15);
-    padding: 10px 22px;
-    margin-right: 8px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: .3s;
-    font-family: inherit;
-    font-weight: 700;
-}
-
-.nav-buttons button:hover {
-    background: #7c3aed;
-    transform: translateY(-3px);
-    box-shadow: 0 0 25px rgba(124,58,237,.5);
-}
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 100px 20px 50px;
-    position: relative;
-    z-index: 1;
-}
-
-.hero h1 {
-    font-size: clamp(55px, 10vw, 120px);
+    font-size: 70px;
     font-weight: 900;
     letter-spacing: 5px;
-    background: linear-gradient(90deg,#fff,#8b5cf6,#00e5ff,#fff);
-    background-size: 300%;
+    background: linear-gradient(90deg,#00eaff,#8c5cff,#ff4fd8);
     -webkit-background-clip: text;
     color: transparent;
-    animation: gradient 5s infinite linear;
-    transition: transform .2s ease;
+    animation: glow 3s infinite alternate;
 }
 
-@keyframes gradient {
-    0% { background-position: 0%; }
-    100% { background-position: 300%; }
-}
-
-.hero p {
-    font-size: 20px;
-    color: #aaa;
+.subtitle {
     margin-top: 15px;
+    color: #bbb;
+    font-size: 18px;
 }
 
-.server-ip {
-    margin-top: 25px;
-    padding: 12px 25px;
-    border-radius: 50px;
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 5px #00eaff);
+    }
+    to {
+        filter: drop-shadow(0 0 25px #ff4fd8);
+    }
+}
+
+/* منو */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto 50px;
+}
+
+.nav button {
+    border: 1px solid rgba(255,255,255,.15);
     background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.12);
-    color: #00e5ff;
+    color: white;
+    padding: 15px 45px;
+    border-radius: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .3s;
+    backdrop-filter: blur(10px);
 }
 
-.shop {
+.nav button:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(90deg,#00bfff,#8c4dff);
+    box-shadow: 0 0 30px rgba(0,200,255,.3);
+}
+
+/* صفحه */
+.page {
     display: none;
-    min-height: 100vh;
-    padding: 130px 7% 80px;
-    position: relative;
-    z-index: 2;
-}
-
-.shop.active {
-    display: block;
-    animation: appear .5s ease;
-}
-
-@keyframes appear {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.shop-title {
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.shop-title h2 {
-    font-size: 45px;
-    font-weight: 900;
-}
-
-.shop-title p {
-    color: #999;
-    margin-top: 10px;
-}
-
-.cards {
+    width: 92%;
     max-width: 1200px;
     margin: auto;
+    animation: show .5s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.title {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.description {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 35px;
+}
+
+/* کارت ها */
+.ranks {
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 25px;
@@ -163,11 +134,12 @@ nav {
 
 .card {
     position: relative;
-    padding: 35px 25px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
     border-radius: 25px;
-    background: linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
-    border: 1px solid rgba(255,255,255,.1);
+    padding: 35px 25px;
     text-align: center;
+    backdrop-filter: blur(15px);
     transition: .35s;
     overflow: hidden;
 }
@@ -175,89 +147,182 @@ nav {
 .card::before {
     content: "";
     position: absolute;
-    width: 150px;
-    height: 150px;
-    background: #7c3aed;
-    filter: blur(80px);
-    opacity: .2;
-    top: -70px;
-    right: -50px;
+    width: 180px;
+    height: 180px;
+    background: #00d9ff;
+    filter: blur(100px);
+    opacity: .15;
+    top: -80px;
+    right: -70px;
 }
 
 .card:hover {
     transform: translateY(-12px) scale(1.02);
-    border-color: #8b5cf6;
-    box-shadow: 0 20px 60px rgba(124,58,237,.25);
+    border-color: rgba(0,220,255,.5);
+    box-shadow: 0 15px 50px rgba(0,0,0,.4);
 }
 
-.card h3 {
+.card h2 {
     font-size: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .price {
-    font-size: 30px;
-    font-weight: 900;
-    color: #00e5ff;
-    margin-bottom: 25px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.card ul {
+.features {
     list-style: none;
     color: #bbb;
-    line-height: 2;
+    line-height: 2.2;
     margin-bottom: 25px;
 }
 
-.buy {
+.features li::before {
+    content: "✓ ";
+    color: #00eaff;
+}
+
+.card button,
+.continue {
     width: 100%;
     border: none;
-    padding: 14px;
     border-radius: 14px;
-    background: linear-gradient(90deg,#7c3aed,#06b6d4);
-    color: white;
-    font-family: inherit;
+    padding: 15px;
     font-size: 17px;
-    font-weight: 800;
+    color: white;
     cursor: pointer;
+    background: linear-gradient(90deg,#00bfff,#794cff);
     transition: .3s;
 }
 
-.buy:hover {
+.card button:hover,
+.continue:hover {
     transform: scale(1.04);
-    box-shadow: 0 0 30px rgba(6,182,212,.35);
+    box-shadow: 0 0 25px rgba(0,200,255,.35);
+}
+
+/* راهنما */
+.guide {
+    max-width: 850px;
+    margin: auto;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 25px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+}
+
+.guide h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.guide .guide-price {
+    text-align: center;
+    color: #00eaff;
+    font-size: 23px;
+    margin-bottom: 30px;
+}
+
+.guide ul {
+    list-style: none;
+    margin: 25px 0;
+}
+
+.guide li {
+    background: rgba(255,255,255,.05);
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 12px;
+    color: #ddd;
+}
+
+.guide li::before {
+    content: "★ ";
+    color: #ffd000;
 }
 
 .back {
-    display: block;
-    margin: 40px auto 0;
-    padding: 12px 30px;
-    border: 1px solid #555;
-    background: transparent;
-    color: white;
-    border-radius: 12px;
-    cursor: pointer;
-    font-family: inherit;
+    background: rgba(255,255,255,.08) !important;
+    margin-top: 12px;
 }
 
-footer {
+/* پیام */
+.message {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 20px;
+}
+
+.message-box {
+    width: 100%;
+    max-width: 450px;
+    background: #11111f;
+    border: 1px solid rgba(0,220,255,.3);
+    border-radius: 25px;
+    padding: 40px;
     text-align: center;
-    padding: 25px;
-    color: #666;
-    border-top: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 0 60px rgba(0,0,0,.7);
+    animation: popup .3s ease;
 }
 
+@keyframes popup {
+    from {
+        transform: scale(.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.message-box h2 {
+    color: #00eaff;
+    margin-bottom: 15px;
+}
+
+.message-box p {
+    color: #ccc;
+    line-height: 2;
+}
+
+.message-box button {
+    margin-top: 25px;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 12px;
+    background: #00bfff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* موبایل */
 @media(max-width:800px) {
-    .cards {
+    .ranks {
         grid-template-columns: 1fr;
     }
 
-    .nav-buttons button {
-        padding: 8px 12px;
+    .logo {
+        font-size: 50px;
     }
 
-    .hero h1 {
-        font-size: 60px;
+    .nav {
+        flex-direction: column;
+    }
+
+    .guide {
+        padding: 25px;
     }
 }
 </style>
@@ -265,209 +330,193 @@ footer {
 
 <body>
 
-<div class="cursor-light" id="light"></div>
-
-<nav>
-    <div class="logo">BOX NETWORK</div>
-
-    <div class="nav-buttons">
-        <button onclick="openShop('pvp')">⚔ PVP</button>
-        <button onclick="openShop('rp')">🌎 RP</button>
+<header>
+    <div class="logo">BOX</div>
+    <div class="subtitle">
+        به شبکه BOX خوش آمدید | فروشگاه رسمی سرور
     </div>
-</nav>
+</header>
 
-<!-- صفحه اصلی -->
-<section class="hero" id="home">
-    <h1 id="title">به سرور BOX خوش آمدید</h1>
+<div class="nav">
+    <button onclick="showPage('pvp')">⚔️ PVP</button>
+    <button onclick="showPage('rp')">🌎 RP</button>
+</div>
 
-    <p>
-        بهترین تجربه ماینکرفت را با ما تجربه کنید!
+<!-- PVP -->
+<section id="pvp" class="page active">
+
+    <h1 class="title">فروشگاه PVP</h1>
+    <p class="description">
+        رنک مورد نظر خود را انتخاب کنید تا راهنمای کامل آن را ببینید.
     </p>
 
-    <div class="server-ip">
-        🎮 IP: play.boxcraft.ir
+    <div class="ranks">
+
+        <div class="card">
+            <h2>🟢 Premium</h2>
+            <div class="price">۳۰,۰۰۰ تومان</div>
+
+            <ul class="features">
+                <li>اولویت ورود به سرور</li>
+                <li>امکانات ظاهری ویژه</li>
+                <li>چند قابلیت اختصاصی</li>
+            </ul>
+
+            <button onclick="guide('premium')">
+                مشاهده راهنما
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>🟡 Gold</h2>
+            <div class="price">۸۰,۰۰۰ تومان</div>
+
+            <ul class="features">
+                <li>تمام امکانات Premium</li>
+                <li>قابلیت‌های اختصاصی بیشتر</li>
+                <li>اولویت بالاتر</li>
+            </ul>
+
+            <button onclick="guide('gold')">
+                مشاهده راهنما
+            </button>
+        </div>
+
+        <div class="card">
+            <h2>🔵 Diamond</h2>
+            <div class="price">۲۰۰,۰۰۰ تومان</div>
+
+            <ul class="features">
+                <li>تمام امکانات Gold</li>
+                <li>بیشترین امکانات اختصاصی</li>
+                <li>قابلیت‌های ویژه Diamond</li>
+            </ul>
+
+            <button onclick="guide('diamond')">
+                مشاهده راهنما
+            </button>
+        </div>
+
     </div>
 </section>
 
+<!-- RP -->
+<section id="rp" class="page">
 
-<!-- فروشگاه PVP -->
-<section class="shop" id="pvp">
+    <h1 class="title">فروشگاه RP</h1>
+    <p class="description">
+        رنک مورد نظر خود را انتخاب کنید.
+    </p>
 
-    <div class="shop-title">
-        <h2>⚔ فروشگاه PVP</h2>
-        <p>رنک موردنظر خود را انتخاب کنید</p>
-    </div>
-
-    <div class="cards">
+    <div class="ranks">
 
         <div class="card">
-            <h3>💜 Premium</h3>
+            <h2>🟢 Premium</h2>
+            <div class="price">۳۰,۰۰۰ تومان</div>
 
-            <div class="price">
-                ۳۰,۰۰۰ تومان
-            </div>
-
-            <ul>
-                <li>✔ رنک Premium</li>
-                <li>✔ امکانات ویژه</li>
-                <li>✔ تگ اختصاصی</li>
+            <ul class="features">
+                <li>اولویت ورود</li>
+                <li>امکانات RolePlay ویژه</li>
+                <li>قابلیت‌های اختصاصی</li>
             </ul>
 
-            <button class="buy" onclick="buy('PVP Premium')">
-                خرید رنک
+            <button onclick="guide('premium')">
+                مشاهده راهنما
             </button>
         </div>
 
-
         <div class="card">
-            <h3>💛 Gold</h3>
+            <h2>🟡 Gold</h2>
+            <div class="price">۸۰,۰۰۰ تومان</div>
 
-            <div class="price">
-                ۸۰,۰۰۰ تومان
-            </div>
-
-            <ul>
-                <li>✔ رنک Gold</li>
-                <li>✔ امکانات بیشتر</li>
-                <li>✔ تگ اختصاصی</li>
+            <ul class="features">
+                <li>تمام امکانات Premium</li>
+                <li>قابلیت‌های بیشتر RP</li>
+                <li>امکانات اختصاصی</li>
             </ul>
 
-            <button class="buy" onclick="buy('PVP Gold')">
-                خرید رنک
+            <button onclick="guide('gold')">
+                مشاهده راهنما
             </button>
         </div>
 
-
         <div class="card">
-            <h3>💎 Diamond</h3>
+            <h2>🔵 Diamond</h2>
+            <div class="price">۲۰۰,۰۰۰ تومان</div>
 
-            <div class="price">
-                ۲۰۰,۰۰۰ تومان
-            </div>
-
-            <ul>
-                <li>✔ رنک Diamond</li>
-                <li>✔ تمامی امکانات</li>
-                <li>✔ تگ ویژه</li>
+            <ul class="features">
+                <li>تمام امکانات Gold</li>
+                <li>بالاترین سطح امکانات</li>
+                <li>قابلیت‌های ویژه RP</li>
             </ul>
 
-            <button class="buy" onclick="buy('PVP Diamond')">
-                خرید رنک
+            <button onclick="guide('diamond')">
+                مشاهده راهنما
             </button>
         </div>
 
     </div>
-
-    <button class="back" onclick="goHome()">← برگشت به صفحه اصلی</button>
 </section>
 
+<!-- راهنما -->
+<section id="guidePage" class="page">
 
-<!-- فروشگاه RP -->
-<section class="shop" id="rp">
+    <div class="guide">
 
-    <div class="shop-title">
-        <h2>🌎 فروشگاه RP</h2>
-        <p>رنک موردنظر خود را انتخاب کنید</p>
-    </div>
+        <h2 id="guideTitle">راهنمای رنک</h2>
 
-    <div class="cards">
+        <div class="guide-price" id="guidePrice"></div>
 
-        <div class="card">
-            <h3>💜 Premium</h3>
+        <p id="guideText"></p>
 
-            <div class="price">
-                ۳۰,۰۰۰ تومان
-            </div>
+        <ul id="guideFeatures"></ul>
 
-            <ul>
-                <li>✔ رنک Premium</li>
-                <li>✔ امکانات ویژه RP</li>
-                <li>✔ تگ اختصاصی</li>
-            </ul>
+        <button class="continue" onclick="payment()">
+            ادامه خرید
+        </button>
 
-            <button class="buy" onclick="buy('RP Premium')">
-                خرید رنک
-            </button>
-        </div>
-
-
-        <div class="card">
-            <h3>💛 Gold</h3>
-
-            <div class="price">
-                ۸۰,۰۰۰ تومان
-            </div>
-
-            <ul>
-                <li>✔ رنک Gold</li>
-                <li>✔ امکانات بیشتر RP</li>
-                <li>✔ تگ اختصاصی</li>
-            </ul>
-
-            <button class="buy" onclick="buy('RP Gold')">
-                خرید رنک
-            </button>
-        </div>
-
-
-        <div class="card">
-            <h3>💎 Diamond</h3>
-
-            <div class="price">
-                ۲۰۰,۰۰۰ تومان
-            </div>
-
-            <ul>
-                <li>✔ رنک Diamond</li>
-                <li>✔ تمامی امکانات RP</li>
-                <li>✔ تگ ویژه</li>
-            </ul>
-
-            <button class="buy" onclick="buy('RP Diamond')">
-                خرید رنک
-            </button>
-        </div>
+        <button class="continue back" onclick="backHome()">
+            بازگشت
+        </button>
 
     </div>
 
-    <button class="back" onclick="goHome()">← برگشت به صفحه اصلی</button>
 </section>
 
+<!-- پیام درگاه -->
+<div class="message" id="message">
 
-<footer>
-    © 2026 BOX Network — تمامی حقوق محفوظ است.
-</footer>
+    <div class="message-box">
 
+        <h2>⚠️ توجه</h2>
+
+        <p>
+            متأسفانه درگاه پرداخت در حال حاضر وجود ندارد.
+            <br>
+            لطفاً بعداً دوباره تلاش کنید.
+        </p>
+
+        <button onclick="closeMessage()">
+            متوجه شدم
+        </button>
+
+    </div>
+
+</div>
 
 <script>
 
-const light = document.getElementById("light");
-const title = document.getElementById("title");
+let currentPage = "pvp";
 
-document.addEventListener("mousemove", (e) => {
+function showPage(page) {
 
-    light.style.left = e.clientX + "px";
-    light.style.top = e.clientY + "px";
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+    });
 
-    if (document.getElementById("home").style.display !== "none") {
+    document.getElementById(page).classList.add("active");
 
-        const x = (window.innerWidth / 2 - e.clientX) / 35;
-        const y = (window.innerHeight / 2 - e.clientY) / 35;
-
-        title.style.transform =
-            `translate(${x}px, ${y}px) rotateX(${y/2}deg) rotateY(${x/2}deg)`;
-    }
-});
-
-
-function openShop(type) {
-
-    document.getElementById("home").style.display = "none";
-
-    document.querySelectorAll(".shop")
-        .forEach(shop => shop.classList.remove("active"));
-
-    document.getElementById(type).classList.add("active");
+    currentPage = page;
 
     window.scrollTo({
         top: 0,
@@ -475,13 +524,77 @@ function openShop(type) {
     });
 }
 
+function guide(rank) {
 
-function goHome() {
+    const title = document.getElementById("guideTitle");
+    const price = document.getElementById("guidePrice");
+    const text = document.getElementById("guideText");
+    const features = document.getElementById("guideFeatures");
 
-    document.querySelectorAll(".shop")
-        .forEach(shop => shop.classList.remove("active"));
+    let data = {
 
-    document.getElementById("home").style.display = "flex";
+        premium: {
+            title: "🟢 رنک Premium",
+            price: "۳۰,۰۰۰ تومان",
+            text: "Premium انتخابی مناسب برای بازیکنانی است که می‌خواهند امکانات ویژه‌ای نسبت به بازیکنان عادی داشته باشند.",
+            features: [
+                "اولویت ورود به سرور هنگام شلوغی",
+                "دسترسی به امکانات ظاهری ویژه",
+                "چند قابلیت اختصاصی داخل سرور",
+                "امکانات ویژه چت و نمایش رنک"
+            ]
+        },
+
+        gold: {
+            title: "🟡 رنک Gold",
+            price: "۸۰,۰۰۰ تومان",
+            text: "Gold امکانات بیشتری نسبت به Premium در اختیار شما قرار می‌دهد و برای بازیکنان فعال مناسب است.",
+            features: [
+                "تمام امکانات Premium",
+                "اولویت ورود بیشتر",
+                "قابلیت‌های اختصاصی بیشتر",
+                "امکانات ویژه برای بازی RolePlay",
+                "امکانات بیشتر داخل سرور"
+            ]
+        },
+
+        diamond: {
+            title: "🔵 رنک Diamond",
+            price: "۲۰۰,۰۰۰ تومان",
+            text: "Diamond بالاترین سطح رنک فروشگاه BOX است و بیشترین امکانات اختصاصی را در اختیار شما قرار می‌دهد.",
+            features: [
+                "تمام امکانات Gold",
+                "بالاترین اولویت ورود",
+                "قابلیت‌های ویژه Diamond",
+                "امکانات اختصاصی بیشتر در سرور",
+                "امکانات ویژه چت و نمایش رنک",
+                "دسترسی به قابلیت‌های خاص سرور"
+            ]
+        }
+
+    };
+
+    title.innerText = data[rank].title;
+    price.innerText = data[rank].price;
+    text.innerText = data[rank].text;
+
+    features.innerHTML = "";
+
+    data[rank].features.forEach(item => {
+
+        let li = document.createElement("li");
+
+        li.innerText = item;
+
+        features.appendChild(li);
+
+    });
+
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+    });
+
+    document.getElementById("guidePage").classList.add("active");
 
     window.scrollTo({
         top: 0,
@@ -489,14 +602,21 @@ function goHome() {
     });
 }
 
+function payment() {
 
-function buy(rank) {
+    document.getElementById("message").style.display = "flex";
 
-    alert(
-        "شما رنک «" + rank +
-        "» را انتخاب کردید!\n\n" +
-        "درگاه پرداخت هنوز به سایت متصل نشده است."
-    );
+}
+
+function closeMessage() {
+
+    document.getElementById("message").style.display = "none";
+
+}
+
+function backHome() {
+
+    showPage(currentPage);
 
 }
 
@@ -504,4 +624,3 @@ function buy(rank) {
 
 </body>
 </html>
-```
